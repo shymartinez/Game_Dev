@@ -6,7 +6,7 @@ public class CameraFollow : MonoBehaviour
 {
     public GameObject tank;
 
-    Private Vector3 offset = new Vector3(0,25,-50)
+    private Vector3 offset = new Vector3(0,50,-100);
 
 
     // Update is called once per frame

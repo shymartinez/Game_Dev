@@ -9,16 +9,6 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: Oil_BarrelMat
     second: {fileID: 2100000, guid: a3a96c3fcd134469597c91bc1b9a308d, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: blinn1SG
-    second: {fileID: 2100000, guid: 2cb330da51fbd49ddba825f1a5ad9ae8, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: lambert2SG
-    second: {fileID: 2100000, guid: 020cbc8ec31964cd385dbc7131e50ce0, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

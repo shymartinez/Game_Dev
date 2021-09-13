@@ -89,11 +89,6 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: Tank_pCylinder3_pCylinder16Mat
     second: {fileID: 2100000, guid: 89726a20f5475474d9a9bc220a06546e, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: blinn1SG
-    second: {fileID: 7806100501455280664, guid: 5ccf22ec33eb8481cada055c7c544a3e, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
