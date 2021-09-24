@@ -13,6 +13,10 @@ public class ENEMYAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+    {
+     void onTriggerEnter2D(Collider2D other);
+    }
+      if(other,gameobject.Compatetag("Projectile"))
+       Destroy(gameobject); 
     }
 }
