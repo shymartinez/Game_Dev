@@ -46,7 +46,7 @@ public class PLAYERCONTROLLER : MonoBehaviour
        // Hit spacebar to shoot
       if(Input.GetKeyDown(KeyCode.Space))
       {
-        Instantiate(projectile, firepoint.transform.position, firePoint.transform.position.rotaion)
+        Instantiate(projectile, firepoint.transform.position, firePoint.transform.position.rotaion);
       }
     }
 }
