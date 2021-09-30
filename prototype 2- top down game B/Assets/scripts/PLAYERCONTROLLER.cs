@@ -14,10 +14,12 @@ public class PLAYERCONTROLLER : MonoBehaviour
    public float yRange = 4.5f;
 
    public GameObject projectile
-   public tra 
+   public Transform firePoint; 
+
     // Update is called once per frame
     void Update()
     {
+       
        vInput = Input.GetAxis("Vertical");
        hInput = Input.GetAxis("Horizontal");
         // move and rotate player 
