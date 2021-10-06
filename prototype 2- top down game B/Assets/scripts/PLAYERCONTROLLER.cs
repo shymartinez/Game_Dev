@@ -7,24 +7,26 @@ public class PLAYERCONTROLLER : MonoBehaviour
     public float speed = 10.0f;
     public float turnspeed = 15.0f;
 
-   private float vInput;
    private float hInput;
+   private float vInput;
 
    public float xRange = 10.5f;
    public float yRange = 4.5f;
 
-   public GameObject projectile
+   public GameObject projectile;
    public Transform firePoint; 
 
     // Update is called once per frame
     void Update()
     {
-       
+       // Setup input connections to keymaps 
        vInput = Input.GetAxis("Vertical");
        hInput = Input.GetAxis("Horizontal");
-        // move and rotate player 
+
+        // Move and rotate player 
       transform.Translate(Vector3.up * speed * Time.deltaTime * vInput);
       transform.Rotate(Vector3.back, turnspeed * hInput * Time.deltaTime);
+
       // create wall on the left side 
       if(transform.positon.x > xRange)
       {
@@ -33,7 +35,7 @@ public class PLAYERCONTROLLER : MonoBehaviour
       }
       if(transform.positon.x < -xRange)
       {
-         transform.position = new Vector3(xRange.transform.position.y.transform.positon.z);
+         transform.position = new Vector3(-xRange,transform.position.y,transform.positon.z);
       // top wall
       }
        if(transform.positon.y > yRange)
