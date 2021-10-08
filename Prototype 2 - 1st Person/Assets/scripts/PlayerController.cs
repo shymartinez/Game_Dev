@@ -23,18 +23,42 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
+        // Update is called once per frame
     void Update()
     {
         Move();
+        CamLook();
+        if(Input.GetButtonDown("Jump"))
+            Jump();
     }
     void Move()
-    {
-
-        float x = Input.GetAxis("Horiontal") * moveSpeed;
+    {   // Get Keyboard Input with moveSpeed
+        float x = Input.GetAxis("Horizontal") * moveSpeed;
         float z = Input.GetAxis("Vertical") * moveSpeed;
-
-        rb.velocity = new Vector3(x, rb.velocity.y, z);
-
+        // Applying movement to the rigidbody
+        Vector3 dir = transform.right * x + trasform.forward * z;
+        // jump direction
+        dir = rb.velocity.y;
+        // apply direction to camera movement
+        rb.velocity = dir;
     }
+    void Jump()
+    {   //Cast ray to ground 
+        Ray ray = ray(transform.position, Vector3.down);
+        // Check Ray length to jump
+        if(Physics.Raycast(ray, 1.1f));
+            rb.Addforce(Vector3.up *jumpForce, ForceMode.Impulse )
+    }
+    void CamLook()
+    {   // get mouse input for to look aroud with mouse 
+        float y = Input.GetAxis("Mouse X")  * lookSensitivity;
+        rotx += Input.GetAxis("Mouse Y") * lookSensitivity; 
+
+        // Clamp the vertical rotation of the camera 
+        rotx = Mathf.Clamp(rotx, minLookx, maxLookx);
+
+        // Applying rotation to camera
+        cam.transform.localRotation = Quaternion.Euler(-rotx, 0, 0);
+        transform.eulerAngles += Vector3.up * y;
+     }
 }
