@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     // Movement 
     public float moveSpeed; // How fast player moves 
-    public float jumpForce;
+    public float jumpForce; // How high the player jumps 
     // Camera 
     public float lookSensitivity; // Mouse movement sensitivity 
     public float maxLookx;  // Lowest down we can look 
@@ -30,27 +30,31 @@ public class PlayerController : MonoBehaviour
         CamLook();
         if(Input.GetButtonDown("Jump"))
             Jump();
+            
     }
     void Move()
-    {   // Get Keyboard Input with moveSpeed
+    {  
+         // Get Keyboard Input with moveSpeed
         float x = Input.GetAxis("Horizontal") * moveSpeed;
         float z = Input.GetAxis("Vertical") * moveSpeed;
         // Applying movement to the rigidbody
-        Vector3 dir = transform.right * x + trasform.forward * z;
+        Vector3 dir = transform.right * x + transform.forward * z;
         // jump direction
-        dir = rb.velocity.y;
+        dir.y = rb.velocity.y;
         // apply direction to camera movement
         rb.velocity = dir;
     }
     void Jump()
-    {   //Cast ray to ground 
-        Ray ray = ray(transform.position, Vector3.down);
+    {  
+         //Cast ray to ground 
+        Ray ray = new Ray(transform.position, Vector3.down);
         // Check Ray length to jump
-        if(Physics.Raycast(ray, 1.1f));
-            rb.Addforce(Vector3.up *jumpForce, ForceMode.Impulse )
+        if(Physics.Raycast(ray, 1.1f))
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse );
     }
-    void CamLook()
-    {   // get mouse input for to look aroud with mouse 
+    private void CamLook()
+    {  
+         // get mouse input for to look around with mouse 
         float y = Input.GetAxis("Mouse X")  * lookSensitivity;
         rotx += Input.GetAxis("Mouse Y") * lookSensitivity; 
 
