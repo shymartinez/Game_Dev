@@ -16,11 +16,15 @@ public class PlayerController : MonoBehaviour
     private Camera cam;
     private Rigidbody rb;
 
+    private Weapon weapon;
+
     void Awake()
     {
         // Get components 
         cam = Camera.main;
         rb = GetComponent<Rigidbody>();
+
+        weapon = GetComponent<Weapon>();
     }
 
         // Update is called once per frame
@@ -28,9 +32,16 @@ public class PlayerController : MonoBehaviour
     {
         Move();
         CamLook();
+        // jump button 
         if(Input.GetButtonDown("Jump"))
             Jump();
-            
+        // fire button
+        if(Input.GetButton("Fire1"))
+        {
+            if(Weapon.CanShoot())
+                weapon.Shoot();
+        }
+
     }
     void Move()
     {  
