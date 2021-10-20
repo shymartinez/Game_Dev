@@ -4,23 +4,19 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+   public GameManager gameManager;
+    
+    void OnTriggerEnter2D(Collider2D other)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    void OnTriggerEnter2D(Collidre2D other)
-    {
-        if(other.CompareTag("Player")&& GameManager.haskey)
+        if(other.CompareTag("Player")&& gameManager.hasKey)
         {
-            print("you have unlocked the door")
-            GameManager. 
+            print("you have unlocked the door");
+            gameManager.isDoorLocked = false;
+
+        }
+        else
+        {
+            print("The door is locked!you are locked here FOREVER! Muahahaha");
         }
     }
 

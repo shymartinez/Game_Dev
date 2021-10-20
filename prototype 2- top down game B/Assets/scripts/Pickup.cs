@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Pickup : MonoBehaviour
 {
+
     public string pickupName;
 
     public int amount;
@@ -12,11 +13,12 @@ public class Pickup : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.Gameobject.CompareTag("Player"))
+        if(other.CompareTag("Player"))
+
         {
-             print("you've picked up a"+ pickupName);
-             GameManager.hasKey = true; 
-              Destroy(gameObject);
+            print("you've picked up a"+ pickupName);
+            gameManager.hasKey = true; 
+            Destroy(gameObject);
         }
        
     }

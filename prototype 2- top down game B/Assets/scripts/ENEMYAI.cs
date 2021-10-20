@@ -12,7 +12,7 @@ public class ENEMYAI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody>(); 
+        rb = GetComponent<Rigidbody2D>(); 
     }
 
     // Update is called once per frame
@@ -22,7 +22,7 @@ public class ENEMYAI : MonoBehaviour
       float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
       rb.rotation =angle;
       direction.Normalize();
-      movment = direction;
+      movement = direction;
     }
      // Occurs at a fixed rate per frame 
      void FixedUpdate()
@@ -31,12 +31,12 @@ public class ENEMYAI : MonoBehaviour
      }
      void MoveEnemy(Vector2 direction)
      {
-       rb.MovePositon((Vector2)transform.position * (direction * movespeed * Time.deltaTime));
+         rb.MovePosition((Vector2)transform.position * (direction * moveSpeed * Time.deltaTime));
      }
 
      void onTriggerEnter2D(Collider2D other)
     {
-      if(other.gameobject.Compatetag("Projectile"))
-       Destroy(gameobject); 
+      if(other.gameObject.CompareTag("Projectile"))
+       Destroy(gameObject); 
     }
 }

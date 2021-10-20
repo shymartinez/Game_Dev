@@ -28,29 +28,29 @@ public class PLAYERCONTROLLER : MonoBehaviour
       transform.Rotate(Vector3.back, turnspeed * hInput * Time.deltaTime);
 
       // create wall on the left side 
-      if(transform.positon.x > xRange)
+      if(transform.position.x > xRange)
       {
-         transform.position = new Vector3(xRange.transform.position.y.transform.positon.z);
+         transform.position = new Vector3(xRange,transform.position.y,transform.position.z);
       // right wall
       }
-      if(transform.positon.x < -xRange)
+      if(transform.position.x < -xRange)
       {
-         transform.position = new Vector3(-xRange,transform.position.y,transform.positon.z);
+         transform.position = new Vector3(-xRange,transform.position.y,transform.position.z);
       // top wall
       }
-       if(transform.positon.y > yRange)
+       if(transform.position.y > yRange)
       {
-         transform.position = new Vector3(transform.position.x,yRange, transform.positon.z);
+         transform.position = new Vector3(transform.position.x,yRange, transform.position.z);
         // bottom wall
       }
-      if(transform.positon.y < -yRange)
+      if(transform.position.y < -yRange)
       {
-         transform.position = new Vector3(transform.position.x,-yRange, transform.positon.z);
+         transform.position = new Vector3(transform.position.x,-yRange, transform.position.z);
       }
        // Hit spacebar to shoot
       if(Input.GetKeyDown(KeyCode.Space))
       {
-        Instantiate(projectile, firepoint.transform.position, firePoint.transform.position.rotaion);
+        Instantiate(projectile, firePoint.transform.position, firePoint.transform.rotation);
       }
     }
 }
