@@ -15,7 +15,7 @@ public class Enemy : MonoBehaviour
     private List<Vector3> path;
 
     private Weapon weapon; 
-    private GameObject target; 
+    public GameObject target; 
     
     
     // Start is called before the first frame update
@@ -35,7 +35,7 @@ public class Enemy : MonoBehaviour
         NavMeshPath navMeshPath = new NavMeshPath();
          NavMesh.CalculatePath(transform.position, target.transform.position, NavMesh.AllAreas, navMeshPath);
         
-        // save caalculated path to the list 
+        // save calculated path to the list 
         path = navMeshPath.corners.ToList();
     }
     void ChaseTarget()
@@ -50,10 +50,10 @@ public class Enemy : MonoBehaviour
     }
     public void TakeDamage(int damage)
     {
-        cur -= damage;
+        curHP -= damage;
 
         if(curHP <= 0);
-            Die();
+            die();
     }
     void die()
     {
