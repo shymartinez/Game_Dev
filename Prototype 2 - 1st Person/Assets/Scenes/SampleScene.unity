@@ -332,7 +332,7 @@ GameObject:
   - component: {fileID: 87491944}
   m_Layer: 0
   m_Name: 'player '
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -408,7 +408,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 87491936}
   m_LocalRotation: {x: -0, y: -0.5726904, z: -0, w: 0.8197717}
-  m_LocalPosition: {x: -8.07, y: 1.45, z: 6.732}
+  m_LocalPosition: {x: -8.07, y: 1.627, z: 6.732}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 963194228}
@@ -615,8 +615,8 @@ MonoBehaviour:
   curHP: 10
   maxHP: 10
   ScoreToGive: 5
-  moveSpeed: 0
-  attackRange: 10
+  moveSpeed: 0.01
+  attackRange: 5
   yPathOffset: 1
   target: {fileID: 0}
 --- !u!114 &448292625
@@ -1680,7 +1680,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2024775938}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.4, y: 19.4, z: 73.2}
+  m_LocalPosition: {x: -7.4, y: 19.4, z: 93.4}
   m_LocalScale: {x: 6.766528, y: 1.4586186, z: 7.769115}
   m_Children: []
   m_Father: {fileID: 0}
