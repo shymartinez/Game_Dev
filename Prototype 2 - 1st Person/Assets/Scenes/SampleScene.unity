@@ -430,8 +430,10 @@ MonoBehaviour:
   moveSpeed: 20
   jumpForce: 10
   lookSensitivity: 10
-  maxLookx: 60
-  minLookx: -60
+  maxLookX: 0
+  minLookX: 0
+  curHP: 0
+  maxHP: 0
 --- !u!54 &87491942
 Rigidbody:
   m_ObjectHideFlags: 0

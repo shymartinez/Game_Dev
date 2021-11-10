@@ -6,24 +6,36 @@ using System.Linq;
 
 public class Enemy : MonoBehaviour
 {
+
     [Header("Stats")]
-    public int curHP, maxHP, ScoreToGive;
+    public int curHP;
+    public int maxHP;
+    public int ScoreToGive;
 
     [Header("Movement")]
-    public float moveSpeed, attackRange, yPathOffset;
+    public float moveSpeed;
+    public float attackRange; 
+    
+    public float yPathOffset;
+
 
     private List<Vector3> path;
 
-    private Weapon weapon; 
+    private Weapons weapons; 
     public GameObject target; 
+
+    private Rigidbody rb;
     
     
     // Start is called before the first frame update
     void Start()
     {
+        curHP = maxHP;
+
         // Gather components 
-        weapon = GetComponent<Weapon>();
+        weapons = GetComponent<Weapons>();
         target = FindObjectOfType<PlayerController>().gameObject;
+        rb = GetComponent<Rigidbody>();
 
         InvokeRepeating("UpdatePath", 0.0f, 0.5f);
 
@@ -38,6 +50,7 @@ public class Enemy : MonoBehaviour
         // save calculated path to the list 
         path = navMeshPath.corners.ToList();
     }
+
     void ChaseTarget()
     {
         if(path.Count == 0)
@@ -47,18 +60,25 @@ public class Enemy : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, path[0] + new Vector3(0, yPathOffset, 0), moveSpeed * Time.deltaTime);
 
         if(transform.position == path[0] + new Vector3(0, yPathOffset, 0));
+            path.RemoveAt(0);  
     }
+
     public void TakeDamage(int damage)
     {
         curHP -= damage;
 
         if(curHP <= 0);
-            die();
+            Die();
     }
-    void die()
+
+    void Die()
     {
-        Destroy(gameObject);
+        rb.constraints = RigidbodyConstraints.None;
+        rb.AddForce(Vector3.back * 10, ForceMode.Impulse);
+        rb.AddForce(Vector3.up * 5, ForceMode.Impulse);
+        Destroy(gameObject,1);
     }
+
     // Update is called once per frame
     void Update()
     {
@@ -70,10 +90,11 @@ public class Enemy : MonoBehaviour
 
        // get distance from enemy to player/target
        float dist = Vector3.Distance(transform.position, target.transform.position);
+
        if(dist <= attackRange)
        {
-           if(weapon.CanShoot())
-                weapon.Shoot();
+           if(weapons.CanShoot())
+                weapons.Shoot();
        }
        else
        {
