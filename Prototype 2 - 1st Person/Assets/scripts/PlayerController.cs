@@ -96,4 +96,12 @@ public class PlayerController : MonoBehaviour
     {
         print(" ur ded ");
     }
+    public void GiveHealth(int amountToGive)
+    {
+        curHP = Mathf.Clamp(curHP + amountToGive, 0, maxHP);
+    }
+    public void GiveAmmo(int amountToGive)
+    {
+        weapons.curAmmo = Mathf.Clamp(weapons.curAmmo + amountToGive, 0, weapons.maxAmmo);
+    }
 }
