@@ -28,9 +28,20 @@ public class PlayerController : MonoBehaviour
         cam = Camera.main;
         rb = GetComponent<Rigidbody>();
         weapons = GetComponent<Weapons>();
-
         // disable cursor 
         Cursor.lockState = CursorLockMode.Locked;
+    }
+ 
+    public void TakeDamage(int damage)
+    {
+        curHP -= damage;
+        
+        if(curHP <= 0)
+            Die();
+    }
+     void Die()
+    {
+       
     }
 
         // Update is called once per frame
@@ -49,7 +60,6 @@ public class PlayerController : MonoBehaviour
                  weapons.Shoot();
             }
         }
-
     }
 
     void Move()
@@ -75,27 +85,18 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void CamLook()
+    void CamLook()
     {  
-        float y = Input.GetAxis("Mouse X")  * lookSensitivity;
+        float y = Input.GetAxis("Mouse X") * lookSensitivity;
         rotX += Input.GetAxis("Mouse Y") * lookSensitivity; 
         // Clamp the vertical rotation of the camera 
         rotX = Mathf.Clamp(rotX, minLookX, maxLookX);
          // Applying rotation to camera
-        cam.transform.localRotation = Quaternion.Euler(-rotX, 0, 0);
+        cam.transform.localRotation = Quaternion.Euler(-rotX,0,0);
         transform.eulerAngles += Vector3.up * y;
      }
-    public void TakeDamage(int damage)
-    {
-        curHP -= damage;
-        
-        if(curHP <= 0)
-            Die();
-    }
-    void Die()
-    {
-        print(" ur ded ");
-    }
+   
+    
     public void GiveHealth(int amountToGive)
     {
         curHP = Mathf.Clamp(curHP + amountToGive, 0, maxHP);
