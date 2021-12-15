@@ -31,14 +31,17 @@ public class GameManager : MonoBehaviour
          TogglePauseGame();
         }
     }
-    public TogglePauseGame()
+    public  void TogglePauseGame()
     {
         // Freeze Game
         gamePaused = !gamePaused;
         Time.timeScale = gamePaused == true ? 0.0f : 1.0f;
 
         //Toggle Pause Menu
-        GameUI.instance.TogglePauseMenu(gamePaused);
+        GameUI.instance.TogglePauseMenu(gamePaused); 
+
+        //toggle mouse Curosr 
+        Cursor.lockState = gamePaused == true ? CursorLockMode.None : CursorLockMode.Locked;
     }
 
     public void AddScore(int score)
@@ -48,6 +51,20 @@ public class GameManager : MonoBehaviour
         //Update score text
         GameUI.instance.UpdateScoreText(curScore);
 
-        //Haccw
+        //Have we reached score to win?
+        if(curScore >= scoreToWin)
+            WinGame();
+    } 
+
+    public void WinGame()
+    {
+        // set game screen
+        GameUI.instance.SetEndGameScreen(true,curScore);
     }
+
+    public void LoseGame()
+    {
+
+    }
+
 }

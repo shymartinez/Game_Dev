@@ -32,21 +32,38 @@ public class PlayerController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
     }
  
+    void Start()
+    {
+        
+    }
+    void Start()
+    {
+        //Initialize the UI
+        GameUI.instance.UpdateHealthBar(curHP,maxHP);
+        GameUI.instance.UpdateScoreText(0);
+        GameUI.instance.UpdateAmmoText(weapons.curAmmo, weapons.maxAmmo);
+    }
     public void TakeDamage(int damage)
     {
         curHP -= damage;
         
         if(curHP <= 0)
             Die();
+
+        GameUI.instance.UpdateHealthBar(curHP, maxHP);
     }
-     void Die()
+    void Die()
     {
-       
+        GameManager.instance.LoseGame();
     }
 
-        // Update is called once per frame
+    //Update is called once per frame
     void Update()
     {
+        //Dont do anything when game is paused
+        if(GameManager.instance.gamePaused == true)
+            return;
+        
         Move();
         CamLook();
         // jump button 
@@ -78,7 +95,6 @@ public class PlayerController : MonoBehaviour
     void Jump()
     {  
         Ray ray = new Ray(transform.position, Vector3.down);
-        // Check Ray length to jump
         if(Physics.Raycast(ray, 1.1f))
         {
               rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse );
@@ -95,14 +111,15 @@ public class PlayerController : MonoBehaviour
         cam.transform.localRotation = Quaternion.Euler(-rotX,0,0);
         transform.eulerAngles += Vector3.up * y;
      }
-   
-    
     public void GiveHealth(int amountToGive)
     {
         curHP = Mathf.Clamp(curHP + amountToGive, 0, maxHP);
+        GameUI.instance.UpdateHealthBar(curHP, maxHP);
     }
+
     public void GiveAmmo(int amountToGive)
     {
         weapons.curAmmo = Mathf.Clamp(weapons.curAmmo + amountToGive, 0, weapons.maxAmmo);
+        GameUI.instance.UpdateAmmoText(weapons.curAmmo ,weapon.maxAmmo);
     }
 }
