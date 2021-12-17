@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+       Time.timeScale = 1.0f; 
     }
 
     // Update is called once per frame
@@ -64,7 +64,10 @@ public class GameManager : MonoBehaviour
 
     public void LoseGame()
     {
-
+        //set the end game screen
+       GameUI.instance.GetEndGameScreen(false, curScore);
+        Time.timeScale = 0.0f;
+        gamePaused = true;
     }
 
 }

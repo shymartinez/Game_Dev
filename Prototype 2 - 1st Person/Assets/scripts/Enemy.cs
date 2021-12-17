@@ -10,7 +10,7 @@ public class Enemy : MonoBehaviour
     [Header("Stats")]
     public int curHP;
     public int maxHP;
-    public int ScoreToGive;
+    public int scoreToGive;
 
     [Header("Movement")]
     public float moveSpeed;
@@ -76,6 +76,7 @@ public class Enemy : MonoBehaviour
         rb.constraints = RigidbodyConstraints.None;
         rb.AddForce(Vector3.back * 10, ForceMode.Impulse);
         rb.AddForce(Vector3.up * 5, ForceMode.Impulse);
+        GameManager.instance.AddScore(scoreToGive);
         Destroy(gameObject,1);
     }
 

@@ -31,17 +31,13 @@ public class PlayerController : MonoBehaviour
         // disable cursor 
         Cursor.lockState = CursorLockMode.Locked;
     }
- 
-    void Start()
-    {
-        
-    }
+
     void Start()
     {
         //Initialize the UI
         GameUI.instance.UpdateHealthBar(curHP,maxHP);
         GameUI.instance.UpdateScoreText(0);
-        GameUI.instance.UpdateAmmoText(weapons.curAmmo, weapons.maxAmmo);
+        GameUI.instance.UpdateAmmoText(weapons.curAmmo, weapons.maxAmmo); 
     }
     public void TakeDamage(int damage)
     {
@@ -120,6 +116,6 @@ public class PlayerController : MonoBehaviour
     public void GiveAmmo(int amountToGive)
     {
         weapons.curAmmo = Mathf.Clamp(weapons.curAmmo + amountToGive, 0, weapons.maxAmmo);
-        GameUI.instance.UpdateAmmoText(weapons.curAmmo ,weapon.maxAmmo);
+        GameUI.instance.UpdateAmmoText(weapons.curAmmo ,weapons.maxAmmo);
     }
 }
