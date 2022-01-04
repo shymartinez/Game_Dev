@@ -23,11 +23,11 @@ public class GameUI : MonoBehaviour
     // Instance
     public static GameUI instance;
      
-     void Awake()
-     {
+    void Awake()
+    {
         //Set The Instance To the Script 
         instance = this; 
-     }
+    }
 
     // Start is called before the first frame update
     void Start()
