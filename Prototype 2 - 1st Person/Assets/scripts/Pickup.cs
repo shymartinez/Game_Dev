@@ -21,12 +21,12 @@ public class Pickup : MonoBehaviour
     private Vector3 startPos;
     private bool bobbingUp;
 
-    // Start is called before the first frame update
     void Start()
     {
         //set the start position 
         startPos = transform.position;
     }
+
     void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Player"))
@@ -38,13 +38,17 @@ public class Pickup : MonoBehaviour
                 case PickupType.Health:
                     player.GiveHealth(value);
                     break;
+
                 case PickupType.Ammo:
                     player.GiveAmmo(value);
                     break;
             }
+
             Destroy(gameObject);
+
         }
     }
+
     void Update()
     {
         //rotating 
@@ -58,4 +62,3 @@ public class Pickup : MonoBehaviour
             bobbingUp = !bobbingUp;
     }
 }
-

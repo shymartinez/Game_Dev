@@ -32,10 +32,14 @@ public class Bullet : MonoBehaviour
         else 
             if(other.CompareTag("Enemy"))
                 other.GetComponent<Enemy>().TakeDamage(damage);
+
+
         //disable bullet 
         gameObject.SetActive(false);
 
+
     }
+    
     // Update is called once per frame
     void Update()
     {

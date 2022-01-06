@@ -19,8 +19,10 @@ public class ObjectPool : MonoBehaviour
             CreateNewObject();
         }
     }
+
     GameObject CreateNewObject()
     {
+         
         GameObject obj = Instantiate(objPrefrab);
         //Deactivate object
         obj.SetActive(false);
@@ -29,6 +31,7 @@ public class ObjectPool : MonoBehaviour
 
         return obj;
     }
+
     public GameObject GetObject()
     {
         GameObject obj = pooledObjs.Find(x => x.activeInHierarchy == false);
@@ -37,10 +40,12 @@ public class ObjectPool : MonoBehaviour
         {
             obj = CreateNewObject();
         }
+
         obj.SetActive(true);
         
         return obj;
     }
+    
     // Update is called once per frame
     void Update()
     {

@@ -35,7 +35,7 @@ public class PLAYERCONTROLLER : MonoBehaviour
       }
       if(transform.position.x < -xRange)
       {
-         transform.position = new Vector3(-xRange,transform.position.y,transform.position.z);
+        transform.position = new Vector3(-xRange,transform.position.y,transform.position.z);
       // top wall
       }
        if(transform.position.y > yRange)
